@@ -3,6 +3,13 @@ const Info = (props) => {
   const tempConverter = (temperature) => {
     return (temperature - 273.15).toFixed(2);
   };
+  var url;
+  if (props.data.cod == 200) {
+    const icon = props.data.weather[0].icon;
+    url = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  } else {
+    url = "";
+  }
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -12,7 +19,7 @@ const Info = (props) => {
       {props.data.cod == 200 ? (
         <div>
           <motion.div initial="hidden" animate="visible" variants={variants}>
-            <img src="" alt="" />
+            <img src={url} alt="" />
             <h1 className="city_name">
               {props.data.name},{props.data.sys.country}
             </h1>
