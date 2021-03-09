@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import Input from "./Input";
+import { motion } from "framer-motion";
+import Info from "./Info";
 const Box = (props) => {
   const [data, setData] = useState({ cod: 404 });
   const [city, setCity] = useState("");
@@ -11,39 +14,30 @@ const Box = (props) => {
       const response = await fetch(url);
       const datares = await response.json();
       setData(datares);
-      console.log(data);
+      console.log(datares);
     };
     if (city !== "") {
       fetchapi();
     }
   }, [city]);
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
   return (
     <div className="main-box">
-      <div className="input-div">
-        <input
-          type="text"
-          value={city}
-          placeholder="Search City Name"
-          className="search-bar"
-          onChange={inputChange}
-          name=""
-          id=""
-        />
-      </div>
-
-      <div className="info-div">
-        {data.cod == 200 ? (
-          <div>
-            <h1 className="city_name">{city}</h1>
-            <h1 className="temp">{data.main.temp}</h1>
-            <p className="min_max">
-              Max : {data.main.temp_max} Cel | Min : {data.main.temp_max} Cel
-            </p>
-          </div>
-        ) : (
-          <h1 className="temp">City Not Found</h1>
-        )}
-      </div>
+      <Input city={city} onSelect={inputChange}></Input>
+      {city !== "" ? (
+        <motion.div initial="hidden" animate="visible" variants={variants}>
+          <Info city={city} data={data}></Info>
+        </motion.div>
+      ) : (
+        <div className="main-display">
+          <motion.div initial="hidden" animate="visible" variants={variants}>
+            <h1>React-Weather-App</h1>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };

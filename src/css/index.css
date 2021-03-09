@@ -61,10 +61,10 @@ body {
 }
 
 .info-div {
+    width: 100%;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
 }
 
 .temp {
@@ -79,5 +79,16 @@ body {
 
 .city_name {
     font-size: 45px;
+    color: rgba(205, 24, 24, 1);
+}
+
+.main-display {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+.main-display h1 {
     color: rgba(205, 24, 24, 1);
 }
