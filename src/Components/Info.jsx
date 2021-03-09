@@ -12,7 +12,10 @@ const Info = (props) => {
       {props.data.cod == 200 ? (
         <div>
           <motion.div initial="hidden" animate="visible" variants={variants}>
-            <h1 className="city_name">{props.data.name}</h1>
+            <img src="" alt="" />
+            <h1 className="city_name">
+              {props.data.name},{props.data.sys.country}
+            </h1>
             <h1 className="temp">{tempConverter(props.data.main.temp)} Cel</h1>
             <p className="min_max">
               Max : {tempConverter(props.data.main.temp_max)} Cel | Min :{" "}
