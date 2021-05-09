@@ -10,7 +10,7 @@ const Box = (props) => {
   };
   useEffect(() => {
     const fetchapi = async () => {
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=315ce1b579881fb3c2cf94eea420ed5b`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=315ce1b579881fb3c2cf94eea420ed5b`;
       const response = await fetch(url);
       const datares = await response.json();
       setData(datares);
